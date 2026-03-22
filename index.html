@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para el amor de mi vida</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --lila-encendido: #c8a2c8;
+      --lila-brillo: rgba(200, 162, 200, 0.5);
+      --azul-marino: #001f3f;
+      --azul-oscuro-premium: #00152b;
+      --texto-claro: #f4f4f4;
+      --texto-suave: #d1d1d1;
+    }
+
+    body {
+      /* FONDO CON DEGRADADO ANIMADO SUTIL */
+      background: linear-gradient(135deg, #001f3f, #00152b, #1a0f2e);
+      background-size: 400% 400%;
+      animation: gradientBG 15s infinite ease-in-out;
+      
+      color: var(--texto-claro);
+      font-family: 'Quicksand', sans-serif; 
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* === EFECTO DE ESTRELLAS/PARTÍCULAS === */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0; /* Detrás de la tarjeta */
+    }
+
+    .card {
+      background: rgba(0, 21, 43, 0.9); /* Un toque translúcido */
+      width: 100%;
+      max-width: 450px;
+      padding: 30px;
+      border-radius: 30px;
+      text-align: center;
+      position: relative;
+      z-index: 1; /* Delante de las partículas */
+      
+      /* EFECTO DE BRILLO SUAVE EN EL BORDE */
+      border: 1px solid var(--lila-encendido);
+      box-shadow: 0 0 20px var(--lila-brillo), 0 20px 50px rgba(0,0,0,0.8);
+      
+      backdrop-filter: blur(5px); /* Desenfoque detrás de la tarjeta */
+    }
+
+    h1 { 
+      font-family: 'Montserrat', sans-serif;
+      color: var(--lila-encendido); 
+      font-size: 1.8rem; 
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      
+      /* BRILLO EN EL TÍTULO */
+      text-shadow: 0 0 10px var(--lila-brillo), 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .dedicatoria {
+      font-style: italic;
+      color: var(--texto-suave);
+      margin: 15px 0 20px 0;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .section {
+      text-align: left;
+      margin-top: 25px;
+      padding: 20px;
+      background: rgba(200, 162, 200, 0.03); /* Fondo muy sutil */
+      border-left: 3px solid var(--lila-encendido);
+      border-radius: 0 15px 15px 0;
+    }
+
+    h3 { 
+      font-family: 'Montserrat', sans-serif;
+      color: var(--lila-encendido); 
+      margin: 0 0 12px 0; 
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .datos-lista {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .datos-lista li {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .datos-lista li::before {
+      content: '❤';
+      color: var(--lila-encendido);
+      margin-right: 12px;
+      font-size: 0.8rem;
+    }
+
+    .foto-amor {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 20px 0;
+      border: 1px solid var(--lila-encendido);
+      box-shadow: 0 0 15px var(--lila-brillo);
+    }
+
+    .music-container {
+      margin: 25px 0;
+      padding: 15px;
+      background: rgba(200, 162, 200, 0.1);
+      border-radius: 50px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    audio {
+      width: 100%;
+      height: 30px;
+      filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+    }
+
+    /* ESTILO DEL CONTADOR FINAL AJUSTADO */
+    .countdown-container {
+      margin-top: 40px;
+      padding: 20px;
+      border: 2px dashed var(--lila-encendido);
+      border-radius: 20px;
+      background: rgba(200, 162, 200, 0.05);
+      box-shadow: 0 0 15px var(--lila-brillo);
+    }
+
+    #timer {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+
+    .time-box span {
+      font-size: 1.6rem;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      color: var(--lila-encendido);
+      display: block;
+      text-shadow: 0 0 8px var(--lila-brillo);
+    }
+
+    .time-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--texto-suave);
+      letter-spacing: 1px;
+    }
+
+    .footer-amor {
+      margin-top: 45px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      color: var(--lila-encendido);
+      text-shadow: 0 0 10px var(--lila-brillo);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="particles-js"></div>
+
+  <div class="card">
+    <h1>Nuestros 2 Años</h1>
+    
+    <img src="img/foto.jpeg" alt="Nosotros" class="foto-amor">
+
+    <p class="dedicatoria">
+      "Gracias por ser mi compañera en cada aventura. Estos dos años han sido los mejores de mi vida y quiero celebrarlos como te lo merecés, mi amor."
+    </p>
+
+    <div class="music-container">
+      <p style="margin: 0 0 10px 0; font-size: 0.8rem; color: var(--lila-encendido); font-weight: 600;">Dale play, te la dedico...</p>
+      <audio controls>
+        <source src="cancion.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+
+    <div class="section">
+      <h3>📍 El Destino Mágico</h3>
+      <ul class="datos-lista">
+        <li><strong>Cuándo:</strong> 11/04/2026</li>
+        <li><strong>Punto de encuentro:</strong> Tu casa</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🎒 IMPORTANTE</h3>
+      <ul class="datos-lista">
+        <li>Te pones mas hermosa de lo que eres</li>
+        <li>Ir twins</li>
+        <li>Estar dispuesta a todo</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>✨ Momentos Especiales</h3>
+      <ul class="datos-lista">
+        <li><strong>Cena:</strong> Lo que tu paladar antoje</li>
+        <li><strong>Actividad:</strong> Perdernos en la mirada</li>
+        <li><strong>Noche:</strong> Sumergirnos bajo el agua</li>
+      </ul>
+    </div>
+
+    <div class="countdown-container">
+      <p style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; color: var(--lila-encendido); letter-spacing: 2px;">TIEMPO PARA NUESTRO ENCUENTRO:</p>
+      <div id="timer">
+        <div class="time-box"><span id="days">00</span><div class="time-label">Días</div></div>
+        <div class="time-box"><span id="hours">00</span><div class="time-label">Horas</div></div>
+        <div class="time-box"><span id="minutes">00</span><div class="time-label">Mins</div></div>
+        <div class="time-box"><span id="seconds">00</span><div class="time-label">Segs</div></div>
+      </div>
+    </div>
+
+    <div class="footer-amor">TE AMO POR SIEMPRE</div>
+  </div>
+
+  <script>
+    const targetDate = new Date("April 11, 2026 00:00:00").getTime();
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+    }, 1000);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#c8a2c8" }, /* Color Lila */
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+        "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
+        "line_linked": { "enable": false }, /* Sin líneas conectoras */
+        "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+      },
+      "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false }, "onclick": { "enable": false }, "resize": true } },
+      "retina_detect": true
+    });
+  </script>
+
+</body>
+</html>
